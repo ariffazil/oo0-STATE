@@ -1,3 +1,7 @@
+# oo0-STATE — Trinity Constitutional Scaffold
+
+![oo0-STATE Crest](assets/oo0-state-logo.jpg)
+
 # oo0-STATE
 
 **DITEMPA BUKAN DIBERI** (Forged, Not Given)
