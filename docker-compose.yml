@@ -1,0 +1,113 @@
+# oo0-STATE Trinity Architecture
+# Floors: F1 (Amanah), F3 (Peace²), F11 (Reversibility), F13 (Sovereignty)
+# ΔS: -0.08 (consolidated orchestration reduces configuration entropy)
+
+version: '3.8'
+
+services:
+  # MIND: Agent Zero - Decision Engine
+  agent-zero:
+    build:
+      context: ./services/mind
+      dockerfile: Dockerfile
+    container_name: oo0-mind
+    ports:
+      - "50080:50080"
+    environment:
+      - OO0_COMPONENT=MIND
+      - OO0_PORT=50080
+      - OO0_WORKSPACE=/sovereign_data/workspace/mind
+      - OO0_ENTROPY_LEDGER=/sovereign_data/entropy_ledger.db
+    volumes:
+      - ./sovereign_data:/sovereign_data
+      - ./services/mind:/app
+    networks:
+      - oo0-bloodstream
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:50080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    labels:
+      - "arifos.floor=F1,F2,F7,F9"
+      - "arifos.component=MIND"
+
+  # HEART: OpenClaw - Action Executor
+  openclaw:
+    build:
+      context: ./services/heart
+      dockerfile: Dockerfile
+    container_name: oo0-heart
+    ports:
+      - "18789:18789"
+    environment:
+      - OO0_COMPONENT=HEART
+      - OO0_PORT=18789
+      - OO0_WORKSPACE=/sovereign_data/workspace/heart
+      - OO0_ENTROPY_LEDGER=/sovereign_data/entropy_ledger.db
+    volumes:
+      - ./sovereign_data:/sovereign_data
+      - ./services/heart:/app
+      - /var/run/docker.sock:/var/run/docker.sock  # For container orchestration (F13: explicit consent)
+    networks:
+      - oo0-bloodstream
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:18789/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    labels:
+      - "arifos.floor=F1,F3,F11,F13"
+      - "arifos.component=HEART"
+
+  # CONSCIENCE: arifOS - Constitutional Auditor
+  arifos:
+    build:
+      context: ./services/conscience
+      dockerfile: Dockerfile
+    container_name: oo0-conscience
+    ports:
+      - "8080:8080"
+    environment:
+      - OO0_COMPONENT=CONSCIENCE
+      - OO0_PORT=8080
+      - OO0_WORKSPACE=/sovereign_data/workspace/conscience
+      - OO0_ENTROPY_LEDGER=/sovereign_data/entropy_ledger.db
+      - OO0_FLOOR_ENFORCEMENT=STRICT  # F1-F13 validation mode
+    volumes:
+      - ./sovereign_data:/sovereign_data
+      - ./services/conscience:/app
+    networks:
+      - oo0-bloodstream
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    labels:
+      - "arifos.floor=F1-F13"
+      - "arifos.component=CONSCIENCE"
+    depends_on:
+      - agent-zero
+      - openclaw
+
+networks:
+  oo0-bloodstream:
+    driver: bridge
+    name: oo0-sovereign-network
+    labels:
+      - "arifos.network=bloodstream"
+      - "arifos.entropy=isolated"  # No external routing
+
+volumes:
+  sovereign_data:
+    driver: local
+    labels:
+      - "arifos.sovereignty=protected"
+      - "arifos.floor=F13"  # Data sovereignty enforced
