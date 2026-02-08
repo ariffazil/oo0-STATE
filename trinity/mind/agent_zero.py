@@ -36,12 +36,16 @@ class AgentZero:
         return thought
     
     def decide(self, options):
-        """Make decisions based on available options"""
+        """
+        Make decisions based on available options
+        Note: Current implementation uses simple first-option selection.
+        Can be extended with more sophisticated decision algorithms.
+        """
         decision = {
             "timestamp": datetime.now().isoformat(),
             "options": options,
             "choice": options[0] if options else None,
-            "reasoning": "First viable option selected"
+            "reasoning": "First viable option selected (simple strategy)"
         }
         self._log_to_workspace("mind_decisions", decision)
         return decision

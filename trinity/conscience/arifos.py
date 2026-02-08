@@ -18,6 +18,12 @@ class ArifOS:
     Implements 13 Floors (F1-F13) with ΔS < 0 and Anti-Hantu protocols
     """
     
+    # Entropy constraint tolerance (allow small positive deltas)
+    ENTROPY_TOLERANCE = 0.1
+    
+    # Entropy normalization factor (for 8-bit character entropy)
+    ENTROPY_NORMALIZATION_FACTOR = 8.0
+    
     FLOORS = {
         "F1": "Foundation - Physical Integrity",
         "F2": "Security - Anti-Hantu Barrier",
@@ -80,7 +86,7 @@ class ArifOS:
             "entropy_before": self.state["entropy_delta"],
             "entropy_after": current_entropy,
             "delta_S": entropy_delta,
-            "constraint_satisfied": entropy_delta < 0.1  # Allow small tolerance
+            "constraint_satisfied": entropy_delta < self.ENTROPY_TOLERANCE
         }
         
         if enforcement["constraint_satisfied"]:
@@ -111,8 +117,8 @@ class ArifOS:
             prob = count / length
             entropy -= prob * math.log2(prob)
         
-        # Normalize to [0, 1] range
-        return entropy / 8.0 if entropy > 0 else 0.0
+        # Normalize to [0, 1] range using 8-bit entropy maximum
+        return entropy / self.ENTROPY_NORMALIZATION_FACTOR if entropy > 0 else 0.0
     
     def activate_anti_hantu(self):
         """Activate Anti-Hantu protocols for protection"""
