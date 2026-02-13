@@ -1,353 +1,152 @@
-# oo0-STATE — Trinity Constitutional Scaffold
+# oo0-STATE — Constitutional State Bus for Trinity
 
-![oo0-STATE Crest](assets/oo0-state-logo.jpg)
+**DITEMPA BUKAN DIBERI** — Forged, Not Given
 
-# oo0-STATE
+oo0-STATE is a **constitutional state layer** that turns your AI toolchain into a **governed, reversible, auditable operating environment**.
 
-**DITEMPA BUKAN DIBERI** (Forged, Not Given)
+In practice, it is the **state layer** that ties together three concrete runtimes:
 
-The Trinity System: Mind (Agent Zero), Heart (OpenClaw), and Conscience (arifOS)
+- **OpenClaw** (Heart, Ω) — local‑first orchestration gateway and chat/front‑end state
+- **OpenCode** (Mind, Δ) — coding + MCP tool engine for code, tests, and refactors
+- **AgentZero** (Deep Mind, Δ·Ω) — long‑running, Docker‑backed workflow engine
 
-## Architecture
-
-The oo0-STATE repository implements a Trinity architecture with three core components working in harmony:
-
-### 🧠 Mind - Agent Zero
-The cognitive center of the Trinity, responsible for:
-- Thought processing and analysis
-- Decision-making and option evaluation
-- Coordination between Heart and Conscience
-- Logging all cognitive activities to `sovereign_data/workspace`
-
-### ❤️ Heart - OpenClaw
-The execution engine of the Trinity, responsible for:
-- Resource grasping and management
-- Operation execution
-- System vitality through pulse monitoring
-- Physical manifestation of decisions
-
-### ⚖️ Conscience - arifOS
-The ethical governance system, implementing:
-- **13 Floors (F1-F13)** for comprehensive oversight:
-  - F1: Foundation - Physical Integrity
-  - F2: Security - Anti-Hantu Barrier
-  - F3: Stability - Resource Conservation
-  - F4: Harmony - Component Synchronization
-  - F5: Ethics - Moral Compass
-  - F6: Wisdom - Knowledge Integration
-  - F7: Justice - Fair Distribution
-  - F8: Compassion - Empathetic Response
-  - F9: Truth - Honest Communication
-  - F10: Growth - Positive Evolution
-  - F11: Balance - Homeostasis
-  - F12: Transcendence - Higher Purpose
-  - F13: Unity - Trinity Convergence
-
-- **Entropy Constraint**: Enforces ΔS < 0 (decreasing entropy principle)
-- **Anti-Hantu Protocols**: Protection mechanisms ensuring system integrity
-
-## The Bloodstream: sovereign_data/workspace
-
-All Trinity components are wired to the `sovereign_data/workspace` directory, which serves as the central nervous system where all operations, thoughts, judgments, and events are logged in real-time.
-
-## Usage
-
-### Quick Start
-
-```bash
-# Run the Trinity system
-python3 trinity_integration.py
-```
-
-### Programmatic Usage
-
-```python
-from trinity_integration import Trinity
-
-# Initialize the Trinity
-trinity = Trinity()
-
-# Process input through all three components
-result = trinity.process("Your input here")
-
-# Perform system audit
-audit = trinity.audit()
-
-# Check floor integrity
-floor_status = trinity.check_floor("F5")
-
-# Get complete status
-status = trinity.get_status()
-```
-
-## Trinity Integration Flow
-
-1. **Mind (Agent Zero)** receives and processes input
-2. **Heart (OpenClaw)** grasps resources and executes operations
-3. **Conscience (arifOS)** judges actions and enforces constraints
-4. **Mind** coordinates the results
-5. **Heart** pulses to confirm system vitality
-
-All activities are logged to `sovereign_data/workspace/*.jsonl` for complete transparency and auditability.
-
-## Key Principles
-
-- **DITEMPA BUKAN DIBERI**: The system is forged through effort, not given freely
-- **ΔS < 0**: Maintain decreasing entropy for system stability
-- **Anti-Hantu**: Protection protocols always active
-- **13 Floors**: Complete ethical governance across all layers
-- **Trinity Unity**: Mind, Heart, and Conscience work as one
-
-## Requirements
-
-- Python 3.6+
-- Standard library only (no external dependencies)
-
-## License
-
-MIT License - See LICENSE file for details
-# oo0-STATE – Sovereign Exoskeleton
-
-**Mind** (Agent Zero @ 50080) | **Heart** (OpenClaw @ 18789) | **Conscience** (arifOS @ 8080)
+All three are governed by **arifOS / aaa-mcp** (Conscience, Ψ) and share a single, constitutional **state bus** that lives in this repo.
 
 ---
 
-## Architecture Philosophy
+## Clients
 
-**DITEMPA BUKAN DIBERI** (Forged, Not Given)
+This state bus is currently used by:
 
-This is not a microservices playground—it is a **thermodynamic governance scaffold** where every component **reduces entropy** (ΔS < 0) through constitutional discipline.
+- **AGI_ASI_bot** — governed OpenClaw personality powered by arifOS (see `https://github.com/ariffazil/AGI_ASI_bot`)
+- **OpenClaw workspace** on this VPS — `~/.openclaw/workspace`, which will be migrated under `state/runtime/openclaw/workspace/`.
 
-### Trinity Components
-
-| Organ | Port | Role | Key Floors |
-|-------|------|------|------------|
-| **Mind** | 50080 | Agent Zero decision engine | F1, F2, F7, F9 |
-| **Heart** | 18789 | OpenClaw action executor | F1, F3, F11, F13 |
-| **Conscience** | 8080 | arifOS constitutional auditor | F1–F13 |
-
-### Shared Bloodstream
-```
-sovereign_data/
-├── workspace/
-│   ├── mind/          # Agent Zero context & memory
-│   ├── heart/         # OpenClaw execution logs
-│   └── conscience/    # arifOS audit trails
-├── entropy_ledger.db  # ΔS tracking (SQLite)
-└── .arifos_manifest   # Constitutional checksum
-```
+See `state/contracts/shared/CANON.md` for the full architecture map and precedence rules.
 
 ---
 
-## Constitutional Floors (F1–F13)
+## What lives in this repo
 
-### Core Integrity
-- **F1 Amanah**: Operations must be reversible and auditable  
-- **F2 Truth**: Prioritise factual accuracy; flag uncertainty  
-- **F7 Humility**: Maintain Ω₀ ∈ [0.03–0.05]; surface limits  
-- **F9 Anti-Hantu**: No consciousness claims or spiritual metaphors  
+Top‑level layout (current snapshot):
 
-### Operational Constraints
-- **F3 Peace²**: Minimise irreversible state changes  
-- **F4 Adil**: No hardcoded biases; expose assumptions  
-- **F5 Maruah**: Respect user sovereignty—clear opt-outs  
-- **F6 Ilmu**: Cite sources; prefer peer-reviewed methods  
+- `openclaw/` — vendored OpenClaw repo (Heart runtime)
+- `opencode/` — vendored OpenCode repo (Mind runtime)
+- `agent-zero/` — AgentZero runtime + wiring
+- `arifOS/` — integration stubs and glue for aaa-mcp / arifOS
+- `config/`
+  - `opencode/opencode.json` — **canonical OpenCode MCP config** for this VPS
+  - `opencode.json` — legacy/scratch config (kept for reference)
+- `sovereign_data/` (planned) — future home for the Trinity "bloodstream" and state bus
+- `ARCHITECTURE.md` / `ARCHITECTURE*.md` — architecture docs (legacy + redesign)
+- `trinity/`, `trinity_integration.py` — earlier single‑process Trinity prototype
 
-### Thermodynamic Discipline
-- **F10 Anti-Hype**: No marketing language  
-- **F11 Reversibility**: Design for graceful rollback  
-- **F12 Auditability**: Log entropy-critical decisions  
-- **F13 Sovereignty**: User data stays in `sovereign_data/`  
+Over time, this repo will match the state‑bus layout defined in the redesign document you wrote (state/, 000‑INIT/, 999‑VAULT/, etc.). Right now it already anchors the **three runtimes + canonical configs** in one place.
 
 ---
 
-## Quick Start
+## Canonical OpenCode config (Mind, Δ)
 
-### Prerequisites
-- Docker 24+ with Compose V2  
-- 4GB RAM minimum (8GB recommended)  
-- Linux/macOS (Windows via WSL2)  
+The file:
 
-### Launch Trinity
-```bash
-# Clone repository
-git clone https://github.com/ariffazil/oo0-STATE.git
-cd oo0-STATE
-
-# Initialize sovereign bloodstream
-mkdir -p sovereign_data/workspace/{mind,heart,conscience}
-touch sovereign_data/entropy_ledger.db
-
-# Forge the exoskeleton
-docker compose up -d
-
-# Verify constitutional health
-curl http://localhost:8080/health  # Conscience
-curl http://localhost:50080/health # Mind
-curl http://localhost:18789/health # Heart
+```text
+config/opencode/opencode.json
 ```
 
-### First Audit
-```bash
-# Trigger conscience review
-curl -X POST http://localhost:8080/audit/full \
-  -H "Content-Type: application/json" \
-  -d '{"scope": "trinity", "threshold": 0.05}'
+is a checked‑in clone of your current `$HOME/.config/opencode/opencode.json`.
+
+It defines the MCP tool stack OpenCode should see when it participates in the Trinity:
+
+- `filesystem` over `/root, /home, /tmp, /var`
+- `git`, `github`, `brave-search`, `firecrawl`, `memory`, `fetch`, `sequential-thinking`, `playwright`, `gh_grep`
+- **`aaa-mcp`** as a local constitutional gateway (ARIFOS_MODE=PROD)
+- an optional `agentzero` MCP endpoint (disabled until stable)
+
+This file is now the **canonical OpenCode config for oo0‑STATE**:
+
+- OpenCode can be pointed at this file (or a symlink) instead of `$HOME`.
+- Future constitutional overlays (wrappers, floor requirements, state bus paths) can be evolved here and rolled out reproducibly.
+
+---
+
+## Canonical architecture (State Bus)
+
+The long document you wrote —
+
+> **“oo0-STATE Architecture Redesign: Constitutional Multi-Agent State Layer”**
+
+is the **canonical architecture spec** for this repo.
+
+- It defines the `state/` tree (opencode/, openclaw/, agentzero/, arifos/, shared/).
+- It specifies JSONL/YAML/Markdown conventions.
+- It pins how aaa-mcp wraps every high‑risk operation (init_gate → agi → asi → apex_verdict → vault_seal).
+
+Next step (after this README update) is to drop that file into the repo as something like:
+
+```text
+ARCHITECTURE_STATE_BUS.md
 ```
 
----
-
-## Development Workflow
-
-### Constitutional Commit Protocol
-```bash
-# Before commit: validate entropy impact
-python scripts/validate_entropy.py --threshold 0.05
-
-# Commit with Floor annotations
-git commit -m "🧊 F2+F7: <description>
-
-- Entropy delta: ΔS ≈ <value>
-- Reversibility: <method>
-- Floors touched: F2, F7, F12
-
-Audit: entropy_ledger.db#entry_<id>"
-```
-
-### Copilot Integration
-GitHub Copilot respects `.github/AGENTS.md` constitutional mandate automatically—no additional setup required. All generated code will:
-- Include Floor annotations in docstrings  
-- Avoid Anti-Hantu violations (F9)  
-- Prefer reversible patterns (F11)  
-- Log entropy deltas (F12)  
+and then gradually make the on‑disk structure (`state/`, `config/…`, symlinks) match the spec.
 
 ---
 
-## Monitoring & Observability
+## Why this is a *complete* Trinity
 
-### Entropy Ledger Schema
-```sql
-CREATE TABLE entropy_log (
-  id INTEGER PRIMARY KEY,
-  timestamp TEXT NOT NULL,          -- ISO 8601
-  component TEXT NOT NULL,           -- MIND|HEART|CONSCIENCE
-  operation TEXT NOT NULL,
-  delta_s REAL NOT NULL,            -- Entropy change
-  floor_compliance TEXT NOT NULL,   -- F1,F2,F7,...
-  reversible INTEGER NOT NULL,      -- 0=No, 1=Yes
-  audit_note TEXT
-);
-```
+**1. All three organs are physically present**
 
-### Health Check Endpoints
-- `GET /health` – Liveness probe (200 OK + component status)  
-- `GET /metrics` – Prometheus-compatible entropy metrics  
-- `POST /audit/emergency` – Trigger F3 (Peace²) stabilization  
+- **Heart (Ω) — OpenClaw**
+  - Lives under `openclaw/`.
+  - Owns chat, lanes, routing, user‑facing progress.
+  - In the redesign, its runtime state mounts under `state/openclaw/…`.
 
----
+- **Mind (Δ) — OpenCode**
+  - Lives under `opencode/` and is wired via `config/opencode/opencode.json`.
+  - Owns code editing, refactors, tests, lint, build pipelines.
+  - In the redesign, its runtime state mounts under `state/opencode/…`.
 
-## Emergency Protocols
+- **Deep Mind / Executor (Δ·Ω) — AgentZero**
+  - Lives under `agent-zero/`.
+  - Owns long‑running Docker tasks, multi‑agent workflows, infra pipelines.
+  - In the redesign, its state lives under `state/agentzero/…` with checkpoints.
 
-### Entropy Spike (ΔS > 0.05)
-```bash
-# Automatic actions (via Conscience):
-# 1. Snapshot current state
-# 2. Halt non-critical operations
-# 3. Log causality chain to entropy_ledger
+**2. Conscience (Ψ) is wired, not hypothetical**
 
-# Manual intervention:
-docker compose exec arifos python /app/stabilize.py --mode=aggressive
-```
+- The OpenCode config already includes **`aaa-mcp`** as an MCP tool.
+- arifOS/aaa-mcp is the *only* place where floor logic (F1–F13) actually lives.
+- The architecture spec makes aaa-mcp a mandatory gateway for any high‑risk action from any runtime.
 
-### Constitutional Floor Violation
-```bash
-# Auto-rollback triggered (F11 Reversibility)
-# Violation logged to:
-tail -f sovereign_data/workspace/conscience/violations.jsonl
+That means:
 
-# Require manual sign-off:
-docker compose down
-git revert <commit-sha>
-docker compose up -d
-```
+- Mind cannot edit dangerous code or run high‑risk tools without Conscience.
+- Heart cannot route critical tasks or escalate lanes without Conscience.
+- AgentZero cannot run infra‑level pipelines or long‑running containers without Conscience.
 
----
+**3. Shared state bus turns philosophy into wiring**
 
-## Architecture Decisions
+The redesign spec turns "Mind–Heart–Conscience" from metaphor into **filesystem contracts**:
 
-### Why Docker Compose Over Kubernetes?
-- **F3 Peace²**: Simpler state management → lower operational entropy  
-- **F13 Sovereignty**: No external orchestrator telemetry  
-- **F11 Reversibility**: Faster rollback with `docker compose down`  
+- Single `state/` root with a directory per runtime.
+- `shared/AGENTS.md`, `RULES.md`, `IDENTITY.yaml`, `mcp-manifest.json` as cross‑cutting canon.
+- Symlinks so that OpenClaw's workspace and OpenCode's rules both point at the same AGENTS/RULES.
+- VAULT‑999 area for sealed verdicts, making every irreversible decision auditable.
 
-### Why SQLite for Entropy Ledger?
-- **F1 Amanah**: Single-file database → atomic backups  
-- **F7 Humility**: Query performance degradation = natural complexity signal  
-- **F12 Auditability**: Standard SQL tooling for forensics  
+Once that layout is instantiated, **anyone** can reconstruct system truth just by reading the repo:
 
-### Why Port Numbers 50080, 18789, 8080?
-- **50080**: Agent Zero reference (5008 = typical ML serving + 0 for "origin")  
-- **18789**: OpenClaw default (arbitrary but documented in upstream)  
-- **8080**: arifOS canonical port (HTTP alternative, non-privileged)  
+- Which agent is allowed to do what.
+- Which tools exist and how they’re governed.
+- Which irreversible actions happened, and under what verdict.
 
----
-## Roadmap
-
-### Phase 1 (Current)
-- [x] Trinity scaffold with Docker Compose  
-- [x] Shared `sovereign_data/` bloodstream  
-- [x] Constitutional health checks  
-- [ ] Agent Zero stub implementation  
-- [ ] OpenClaw stub implementation  
-- [ ] arifOS audit engine stub  
-
-### Phase 2 (Q2 2026)
-- [ ] MCP server integration for Mind ↔ Heart ↔ Conscience  
-- [ ] Entropy ledger analytics dashboard  
-- [ ] Floor violation auto-remediation  
-- [ ] Multi-LLM routing (Gemini, Claude, Kimi)  
-
-### Phase 3 (Q3 2026)
-- [ ] Quantum-resistant state encryption (F13 Sovereignty)  
-- [ ] Distributed conscience (multi-node arifOS)  
-- [ ] AGI alignment stress testing framework  
+That combination — three concrete runtimes + one shared state bus + aaa-mcp as constitutional governor — is what makes this a **complete Trinity**, not just three random services.
 
 ---
 
-## Governance
+## Next concrete steps
 
-### Contribution Protocol
-All PRs must:
-1. Pass constitutional compliance tests (see `.github/AGENTS.md`)  
-2. Include entropy impact assessment in commit message  
-3. Add Floor annotations to modified files  
-4. Update `entropy_ledger.db` schema if touching audit logic  
+Short, high‑leverage moves from here:
 
-### Maintainer
-**Muhammad Arif Fazil** (Arif)  
-- GitHub: [@ariffazil](https://github.com/ariffazil)  
-- Framework: [arifOS](https://github.com/ariffazil/arifOS)  
-- Scholar: Petronas (Penang 1990)  
+1. **Commit `config/opencode/opencode.json`** as the canonical OpenCode config.
+2. **Add the architecture redesign doc** into the repo (e.g. `ARCHITECTURE_STATE_BUS.md`).
+3. **Introduce a minimal `state/` skeleton** matching the spec (even just empty dirs + READMEs).
+4. **Wire OpenCode and OpenClaw** to read from this repo’s config/state instead of scattered `$HOME` files.
 
-### License
-MIT License with arifOS Attribution Clause – see [LICENSE](LICENSE)
-
----
-
-## Attribution
-
-```
-arifOS Constitutional AI Governance
-Architect: Muhammad Arif Fazil
-Motto: DITEMPA BUKAN DIBERI (Forged, Not Given)
-Framework: https://github.com/ariffazil/arifOS
-Exoskeleton: https://github.com/ariffazil/oo0-STATE
-```
-
----
-
-**Thermodynamic Principle**: Every commit must cool the system (ΔS < 0). If you're adding complexity, you're increasing entropy—rethink the design.
-
-**Maruah Clause**: This code respects human sovereignty. No telemetry, no dark patterns, no coercion. User data flows only where explicitly directed.
-
-**Final Reminder**: Physics over prompts. Logic over vibes. Ditempa bukan diberi.
+After that, oo0‑STATE stops being just philosophy and becomes the **single point of truth and reversibility** for everything Mind, Heart, and Conscience do together.

@@ -2,10 +2,12 @@
 
 ## System Identity
 
-**Name**: oo0-STATE Trinity System  
-**Version**: 1.0.0  
+**Name**: oo0-STATE — Constitutional State Layer  
+**Version**: 2.0.0-draft  
 **Philosophy**: DITEMPA BUKAN DIBERI (Forged, Not Given)  
-**Architecture**: Trinity (Mind, Heart, Conscience)  
+**Architecture**: Sovereign Runtime Governance (Const-Ops) over Trinity (Mind, Heart, Conscience)  
+
+**One-line definition**: A constitutional state layer that turns an AI toolchain into a governed, reversible, auditable operating environment.
 
 ## Components
 
