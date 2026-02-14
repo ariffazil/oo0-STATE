@@ -206,41 +206,46 @@ VPS + Docker + MCP tools
 
 ---
 
-## Part 4: 3 Contrast Questions for Gemini Validation
+## Part 4: 3 Contrast Questions for Tri-Witness Validation
 
-### Question 1: Thermodynamic Completeness
-**What we mapped:** Entropy reduction in communication (DSUP), reversibility in actions (F1 Amanah), uncertainty tracking (Ω₀)
+### Q1 – AGI as a model vs AGI as a governed multi-agent system
 
-**What we might have missed:** 
-- Energy consumption monitoring (is the VPS carbon-efficient?)
-- Heat dissipation metaphor (are we overloading the system?)
-- Information theory limits (Shannon entropy of the canonical store)
+**Context:** I'm treating AGI not as "one monolithic model", but as my personal governed multi-agent system:
+- LLMs + MCP tools + my arifOS APEX Server + OpenClaw/Agent Zero,
+- scoped to reduce entropy in my life under explicit constitutional Floors (F1–F13).
 
-**Ask Gemini:** Does the current architecture adequately track thermodynamic costs (energy, compute, attention) as well as information entropy? What metrics should be added to make Ω₀ thermodynamically grounded rather than just epistemically grounded?
-
----
-
-### Question 2: Governance Completeness
-**What we mapped:** F1-F13 operational constraints, DSUP reporting, ACLIP lifecycle
-
-**What we might have missed:**
-- Conflict resolution when Floors contradict (e.g., F1 Amanah vs F5 Peace² in urgent scenarios)
-- Succession planning (what happens if Arif is unavailable?)
-- Adversarial robustness (what if an agent lies about Ω₀?)
-
-**Ask Gemini:** Is the constitutional framework complete enough to handle edge cases where Floors conflict, or where the human sovereign is unavailable? What additional "circuit breakers" should be designed?
+**Ask Gemini:**
+- How does this system-centric, personal-scale definition of AGI compare to mainstream definitions of AGI in current research and industry (like IBM, OpenAI, Goertzel, Tong Test)?
+- Where does my definition capture something important that those miss?
+- Where might it be too narrow or too optimistic, especially on generalization and value alignment?
 
 ---
 
-### Question 3: Architectural Scalability
-**What we mapped:** Single VPS (srv1325122), single MCP server, 8 AAA skills
+### Q2 – DSUP + ACLIP vs conventional AI safety / MLOps
 
-**What we might have missed:**
-- Multi-region redundancy (what if Hostinger Malaysia fails?)
-- Federation (can multiple APEX servers share canonical stores?)
-- Skill versioning (how do we update AAA-VPS-GUARDIAN without breaking existing missions?)
+**Context:** I've implemented DSUP (Dual Status Update Protocol) and an ACLIP-style ledger:
+- every mission has init_session, DSUP snapshots (progress %, risk, rollback confidence, omega_0), and seal_session,
+- all under thermodynamic Floors (reversibility, truth, humility, anti-anthropomorphism).
 
-**Ask Gemini:** Does the current architecture support scaling beyond a single VPS, or is it inherently singleton? What would be required to federate APEX servers across multiple hosts while maintaining constitutional coherence?
+**Ask Gemini:**
+- Compare this to standard AI safety / MLOps practices: unit tests, monitoring, canary deploys, RLHF, etc.
+- What failure modes does my DSUP/ACLIP design still miss?
+- In particular, how could a clever agent still cause harm even if every mission looks "SUCCESS" in DSUP?
+- What additional signals or safeguards would you add?
+
+---
+
+### Q3 – Self-hosted APEX vs platform-hosted "AI assistants"
+
+**Context:** I moved from Railway-hosted deployments to a self-hosted Hostinger VPS, running my own APEX MCP server (arifosmcp.arif-fazil.com) and OpenClaw gateway, because I want:
+- full visibility into infra,
+- reversible changes (snapshots, Docker control),
+- my constitution (Floors) enforced as code.
+
+**Ask Gemini:**
+- Compare this sovereign, self-hosted architecture with using AI-managed VPS platforms and vendor AI assistants (like Hostinger's Kodee, OpenAI's hosted agents, etc.).
+- In practice, what risks do I reduce, and what new risks do I introduce, by self-hosting?
+- Where might a platform-managed stack actually be safer or more reliable than my own APEX architecture, assuming I'm a non-coder who hates debugging terminals?
 
 ---
 
