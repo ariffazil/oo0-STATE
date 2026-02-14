@@ -3,9 +3,42 @@
 ## System Identity
 
 **Name**: oo0-STATE — Constitutional State Layer  
-**Version**: 2.0.0-draft  
+**Version**: 5.0.0 — LEVEL 5 (Agentic Institution)  
 **Philosophy**: DITEMPA BUKAN DIBERI (Forged, Not Given)  
 **Architecture**: Sovereign Runtime Governance (Const-Ops) over Trinity (Mind, Heart, Conscience)  
+**Status**: 🟡 ACTIVE — Registry Commissioned
+
+---
+
+## Institution Structure (NEW — Level 5)
+
+The gap between **arifOS** (The Engine) and **oo0-STATE** (The Institution) is now absolute:
+
+| Dimension | arifOS (Engine) | oo0-STATE (Institution) |
+|-----------|----------------|-------------------------|
+| Role | The Muscle & Brain | The Memory & Law |
+| Updates | Frequent (Code, Patches) | Permanent (Ledgers, Judgments) |
+| Security | Runtime Hardening (gVisor) | Identity Verification (Registry) |
+| Metric | Ω (Real-time Entropy) | Treasury (Historical Cost) |
+| Failure Mode | Crash / Bug | Corruption of Truth |
+| Agent View | "How do I execute this?" | "Am I allowed to exist?" |
+
+### The Bureaucracy of Soul
+
+```
+oo0-STATE/
+├── registry/              # Registry of Citizens — Agent Identity
+│   ├── commissioned_agents/
+│   ├── suspended/
+│   ├── decommissioned/
+│   └── seal.sh           # 888 Judge approval
+├── law/                  # Stare Decisis — Legal Precedents
+│   └── judgments/        # Case law library
+└── treasury/             # Token Economics — Budget & Cost
+    └── ledgers/          # Monthly DSUP line items
+```
+
+**Principle**: *"Agents do not spawn. They are commissioned."*  
 
 **One-line definition**: A constitutional state layer that turns an AI toolchain into a governed, reversible, auditable operating environment.
 
@@ -250,11 +283,26 @@ The Trinity embodies this through comprehensive architecture requiring active en
 
 MIT License - See LICENSE file
 
+## Commissioned Agents (Registry)
+
+| Registry ID | Name | Rank | Status | Ω₀ | Origin Commit | Commission Date |
+|-------------|------|------|--------|-----|---------------|-----------------|
+| AGENT-ZERO-v1-2026-02-13 | Agent Zero | ACTOR | 🟡 ACTIVE | 0.06 | b820250f | 2026-02-13 |
+
+**Agent Zero v1**: The contained research lab. High-entropy sandbox. Clearance Level 3 (ACTOR). Cannot architect system changes without escalation.
+
 ## Verdict
 
-**DITEMPA BUKAN DIBERI**
+**LEVEL 5 STATUS: ACHIEVED** 🏛️
 
-The Trinity system is complete, operational, and ready for conscious engagement.
+- ✅ Registry of Citizens: Commissioned
+- ✅ Case Law Library: Established (vps_migration_2026)
+- ✅ Treasury Structure: Initialized
+- 🔄 888 Judge Seal: PENDING execution
+
+The Institution is alive. The Engine is contained. Sovereignty is absolute.
+
+**DITEMPA BUKAN DIBERI** 🔥🦞
 
 ---
 
