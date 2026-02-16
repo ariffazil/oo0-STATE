@@ -45,12 +45,27 @@
     },
     "fetch": {
       "type": "local",
-      "command": ["mcp-server-fetch"],
+      "command": ["npx", "-y", "@modelcontextprotocol/server-fetch"],
       "enabled": true
     },
     "git": {
       "type": "local",
-      "command": ["mcp-server-git"],
+      "command": ["npx", "-y", "@modelcontextprotocol/server-git"],
+      "enabled": true
+    },
+    "postgres": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-postgres", "postgresql://arifos:localdev_password@localhost:5432/arifos_vault"],
+      "enabled": true
+    },
+    "redis": {
+      "type": "local",
+      "command": ["npx", "-y", "@liangshanli/mcp-server-redis", "redis://localhost:6379"],
+      "enabled": true
+    },
+    "docker-mcp": {
+      "type": "local",
+      "command": ["/root/arifOS/.venv/bin/python", "/root/arifOS/mcp/docker-mcp-stdio.py"],
       "enabled": true
     },
     "sequential-thinking": {
@@ -70,7 +85,7 @@
     },
     "aaa-mcp": {
       "type": "local",
-      "command": ["python3", "-m", "aaa_mcp"],
+      "command": ["/root/arifOS/.venv/bin/python", "-m", "aaa_mcp"],
       "enabled": true,
       "timeout": 15000,
       "environment": {
