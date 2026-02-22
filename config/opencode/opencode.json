@@ -1,9 +1,18 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "reserved": 4096
+  },
   "mcp": {
     "github": {
       "type": "local",
-      "command": ["npx", "-y", "@modelcontextprotocol/server-github"],
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
       "environment": {
         "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
       },
@@ -11,92 +20,34 @@
     },
     "filesystem": {
       "type": "local",
-      "command": ["npx", "-y", "@modelcontextprotocol/server-filesystem", "/root", "/home", "/tmp", "/var"],
-      "enabled": true
-    },
-    "brave-search": {
-      "type": "local",
-      "command": ["npx", "-y", "@brave/brave-search-mcp-server"],
-      "environment": {
-        "BRAVE_API_KEY": "${BRAVE_API_KEY}"
-      },
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/root",
+        "/home",
+        "/tmp",
+        "/var"
+      ],
       "enabled": true
     },
     "memory": {
       "type": "local",
-      "command": ["npx", "-y", "@modelcontextprotocol/server-memory"],
-      "enabled": true
-    },
-    "context7": {
-      "type": "remote",
-      "url": "https://mcp.context7.com/mcp",
-      "headers": {
-        "CONTEXT7_API_KEY": "${CONTEXT7_API_KEY}"
-      },
-      "enabled": true
-    },
-    "firecrawl": {
-      "type": "local",
-      "command": ["npx", "-y", "firecrawl-mcp"],
-      "environment": {
-        "FIRECRAWL_API_KEY": "${FIRECRAWL_API_KEY}"
-      },
-      "enabled": true
-    },
-    "fetch": {
-      "type": "local",
-      "command": ["npx", "-y", "@modelcontextprotocol/server-fetch"],
-      "enabled": true
-    },
-    "git": {
-      "type": "local",
-      "command": ["npx", "-y", "@modelcontextprotocol/server-git"],
-      "enabled": true
-    },
-    "postgres": {
-      "type": "local",
-      "command": ["npx", "-y", "@modelcontextprotocol/server-postgres", "postgresql://arifos:localdev_password@localhost:5432/arifos_vault"],
-      "enabled": true
-    },
-    "redis": {
-      "type": "local",
-      "command": ["npx", "-y", "@liangshanli/mcp-server-redis", "redis://localhost:6379"],
-      "enabled": true
-    },
-    "docker-mcp": {
-      "type": "local",
-      "command": ["/root/arifOS/.venv/bin/python", "/root/arifOS/mcp/docker-mcp-stdio.py"],
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
       "enabled": true
     },
     "sequential-thinking": {
       "type": "local",
-      "command": ["npx", "-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
       "enabled": true
-    },
-    "playwright": {
-      "type": "local",
-      "command": ["npx", "-y", "@playwright/mcp"],
-      "enabled": true
-    },
-    "gh_grep": {
-      "type": "remote",
-      "url": "https://mcp.grep.app",
-      "enabled": true
-    },
-    "aaa-mcp": {
-      "type": "local",
-      "command": ["/root/arifOS/.venv/bin/python", "-m", "aaa_mcp"],
-      "enabled": true,
-      "timeout": 15000,
-      "environment": {
-        "ARIFOS_MODE": "PROD"
-      }
-    },
-    "agentzero": {
-      "type": "remote",
-      "url": "http://localhost:50001/mcp/t-arifos-agentzero-2026/sse",
-      "enabled": false,
-      "note": "Agent Zero MCP server has initialization issues with ASGI/Flask integration. Enable after upstream fix."
     }
   }
 }
