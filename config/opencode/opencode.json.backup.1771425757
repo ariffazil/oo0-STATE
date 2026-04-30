@@ -1,25 +1,9 @@
 {
   "$schema": "https://opencode.ai/config.json",
-<<<<<<< HEAD
   "mcp": {
     "github": {
       "type": "local",
       "command": ["npx", "-y", "@modelcontextprotocol/server-github"],
-=======
-  "compaction": {
-    "auto": true,
-    "prune": true,
-    "reserved": 4096
-  },
-  "mcp": {
-    "github": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@modelcontextprotocol/server-github"
-      ],
->>>>>>> origin/main
       "environment": {
         "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
       },
@@ -27,7 +11,6 @@
     },
     "filesystem": {
       "type": "local",
-<<<<<<< HEAD
       "command": ["npx", "-y", "@modelcontextprotocol/server-filesystem", "/root", "/home", "/tmp", "/var"],
       "enabled": true
     },
@@ -37,22 +20,10 @@
       "environment": {
         "BRAVE_API_KEY": "${BRAVE_API_KEY}"
       },
-=======
-      "command": [
-        "npx",
-        "-y",
-        "@modelcontextprotocol/server-filesystem",
-        "/root",
-        "/home",
-        "/tmp",
-        "/var"
-      ],
->>>>>>> origin/main
       "enabled": true
     },
     "memory": {
       "type": "local",
-<<<<<<< HEAD
       "command": ["npx", "-y", "@modelcontextprotocol/server-memory"],
       "enabled": true
     },
@@ -95,18 +66,10 @@
     "docker-mcp": {
       "type": "local",
       "command": ["/root/arifOS/.venv/bin/python", "/root/arifOS/mcp/docker-mcp-stdio.py"],
-=======
-      "command": [
-        "npx",
-        "-y",
-        "@modelcontextprotocol/server-memory"
-      ],
->>>>>>> origin/main
       "enabled": true
     },
     "sequential-thinking": {
       "type": "local",
-<<<<<<< HEAD
       "command": ["npx", "-y", "@modelcontextprotocol/server-sequential-thinking"],
       "enabled": true
     },
@@ -123,25 +86,37 @@
     "aaa-mcp": {
       "type": "local",
       "command": ["/root/arifOS/.venv/bin/python", "-m", "aaa_mcp"],
-      "enabled": true,
+      "enabled": false,
       "timeout": 15000,
       "environment": {
         "ARIFOS_MODE": "PROD"
       }
     },
+    "arifos-mcp": {
+      "type": "local",
+      "command": ["/root/arifOS/.venv/bin/python", "-m", "arifos_router"],
+      "enabled": true,
+      "timeout": 30000,
+      "environment": {
+        "ARIFOS_MODE": "PROD",
+        "PYTHONPATH": "/root/arifOS"
+      }
+    },
     "agentzero": {
       "type": "remote",
       "url": "http://localhost:50001/mcp/t-arifos-agentzero-2026/sse",
-      "enabled": false,
-      "note": "Agent Zero MCP server has initialization issues with ASGI/Flask integration. Enable after upstream fix."
-=======
-      "command": [
-        "npx",
-        "-y",
-        "@modelcontextprotocol/server-sequential-thinking"
-      ],
+      "enabled": false
+    },
+    "sentry": {
+      "type": "remote",
+      "url": "https://mcp.sentry.dev/mcp",
+      "oauth": {},
       "enabled": true
->>>>>>> origin/main
+    },
+    "pdf": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-pdf"],
+      "enabled": true
     }
   }
 }
